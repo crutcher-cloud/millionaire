@@ -9,6 +9,6 @@ import Foundation
 
 struct Question {
     var question = ""
-    var answers = [""]
+    var answers = [String]()
     var correctAnswer = 0
 }

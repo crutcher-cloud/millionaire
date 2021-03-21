@@ -25,7 +25,7 @@ class Game {
     
     func calculationResult(result: GameSession) {
         let percent = (Double(result.correctAnswersCount) / Double(result.questionCount)) * 100
-        Game.shared.results.append(Records(date: Date(), value: "\(percent)%"))
+        Game.shared.results.append(Records(date: Date(), value: percent))
         self.session = nil
     }
 }
@@ -37,6 +37,6 @@ class GameSession {
 
 struct Records: Codable {
     let date: Date
-    let value: String
+    let value: Double
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DA328D5626026A3D00EC58CA /* ResultsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA328D5526026A3D00EC58CA /* ResultsCaretaker.swift */; };
+		DA4E05E12605E9730057F137 /* QuestionsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4E05E02605E9730057F137 /* QuestionsStorage.swift */; };
 		DA5EE3B125E15D7E00BDF301 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5EE3B025E15D7E00BDF301 /* AppDelegate.swift */; };
 		DA5EE3B325E15D7E00BDF301 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5EE3B225E15D7E00BDF301 /* SceneDelegate.swift */; };
 		DA5EE3B525E15D7E00BDF301 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5EE3B425E15D7E00BDF301 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		DA328D5526026A3D00EC58CA /* ResultsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCaretaker.swift; sourceTree = "<group>"; };
+		DA4E05E02605E9730057F137 /* QuestionsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsStorage.swift; sourceTree = "<group>"; };
 		DA5EE3AD25E15D7E00BDF301 /* Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millionaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5EE3B025E15D7E00BDF301 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA5EE3B225E15D7E00BDF301 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				DA5EE3B625E15D7F00BDF301 /* Main.storyboard */,
 				DACE2FF025E1813D004BA035 /* GameVC */,
 				DACE2FE225E16E7A004BA035 /* Question.swift */,
+				DA4E05E02605E9730057F137 /* QuestionsStorage.swift */,
 				DA911A0E25E801EB008EE265 /* Model.swift */,
 				DA328D5526026A3D00EC58CA /* ResultsCaretaker.swift */,
 				DA5EE3B925E15D8000BDF301 /* Assets.xcassets */,
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DACE2FE625E171AD004BA035 /* GameViewController.swift in Sources */,
+				DA4E05E12605E9730057F137 /* QuestionsStorage.swift in Sources */,
 				DA911A0F25E801EB008EE265 /* Model.swift in Sources */,
 				DA5EE3B525E15D7E00BDF301 /* ViewController.swift in Sources */,
 				DACE2FE325E16E7A004BA035 /* Question.swift in Sources */,
