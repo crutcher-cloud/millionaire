@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct questionsStorage {
+struct QuestionsStorage {
     var arrayOfQuestions = [
         Question(question: "Какое растение существует на самом деле?", answers: ["Лох чилийский", "Лох индийский", "Лох русский", "Лох греческий"], correctAnswer: 1),
         Question(question: "Что за место, попав в которое, человек делает селфи на кухне, которую не может себе позволить?", answers: ["Рим", "Париж", "Лондон", "Икеа"], correctAnswer: 3),
