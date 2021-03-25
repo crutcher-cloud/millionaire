@@ -13,20 +13,38 @@ class GameViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var answerButtons: [UIButton]!
     
+    @IBOutlet weak var percentLabel: UILabel!
+    
     var delegate: GameDelegate?
     
     //Экземпляр хранилища вопросов
-    var questions = questionsStorage().arrayOfQuestions
+    var questions = [Question]()
     
-    private var questionNumber = 0
+    var questionNumber = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setQuestion(questionNumber: questionNumber)
-        
         //Создание новой игровой сессии
         Game.shared.session = GameSession()
         Game.shared.session!.questionCount = questions.count
+        
+        //Выбор стратегии в зависимости от установленного уровня сложности
+        switch Game.shared.highDifficulty {
+        case false:
+            questions = StaticArrayOfQuestion().generateQuestion()
+        default:
+            questions = RandomArrayOfQuestion().generateQuestion()
+        }
+        
+        //Установка 1го вопроса
+        setQuestion(questionNumber: questionNumber)
+        
+        //Подписка на изменения percentOfTrue
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationAction), name: NSNotification.Name(rawValue: "percentValueChanged"), object: nil)
+    }
+    
+    @objc func notificationAction() {
+        percentLabel.text = "Пройдено: \(Int(Game.shared.session?.percentOfTrue.rounded() ?? 0.0))%"
     }
     
     @IBAction func endButtonTap(_ sender: UIButton) {
@@ -40,6 +58,7 @@ class GameViewController: UIViewController {
             if (questionNumber + 1) < questions.count {
                 setQuestion(questionNumber: questionNumber + 1)
                 Game.shared.session!.correctAnswersCount += 1
+                Game.shared.session?.percentOfTrue = (Double(Game.shared.session!.correctAnswersCount) / Double(self.questions.count)) * 100
             } else {
                 Game.shared.session!.correctAnswersCount += 1
                 showEndGameAlert(title: "Игра закончена", message: "Вы правильно ответили на все вопросы!", buttonText: "ОК")
@@ -51,17 +70,6 @@ class GameViewController: UIViewController {
             delegate?.didEndGame(with: Game.shared.session!)
             //Закрытие контроллера GameViewController происходит по нажатию кнопки "ОК" в алерте
         }
-    }
-    
-    func setQuestion(questionNumber: Int){
-        titleLabel.text = "Вопрос \(questionNumber + 1) из \(questions.count)"
-        questionLabel.text = questions[questionNumber].question
-        
-        for button in answerButtons {
-            button.setTitle(questions[questionNumber].answers[button.tag], for: .normal)
-        }
-        
-        self.questionNumber = questionNumber
     }
 }
 

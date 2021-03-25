@@ -7,13 +7,17 @@
 
 import Foundation
 
+//Синглтон для хранения данных о текущей игре
 class Game {
     static let shared = Game()
     
     private let resultsCaretaker = ResultsCaretaker()
     
     var session: GameSession?
-    var results: [Records] = [] {
+    
+    var highDifficulty: Bool = false //Хранение сложности. False - легко; True - сложно
+    
+    var results = [Records]() {
         didSet {
             resultsCaretaker.saveResults(results: results)
         }
@@ -24,17 +28,32 @@ class Game {
     }
     
     func calculationResult(result: GameSession) {
-        let percent = (Double(result.correctAnswersCount) / Double(result.questionCount)) * 100
-        Game.shared.results.append(Records(date: Date(), value: percent))
+        //self.session?.percentOfTrue = (Double(result.correctAnswersCount) / Double(result.questionCount)) * 100
+        Game.shared.results.append(Records(date: Date(), value: self.session!.percentOfTrue))
         self.session = nil
     }
 }
 
+//Модель текущей игровой сессии
 class GameSession {
     var questionCount: Int = 0
     var correctAnswersCount: Int = 0
+    var percentOfTrue = 0.0 {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "percentValueChanged"), object: nil)
+        }
+    }
 }
 
+//Модель вопроса
+struct Question: Codable {
+    var question = ""
+    var answers = [String]()
+    var correctAnswer = 0
+}
+
+
+//Модель записи о рекордах
 struct Records: Codable {
     let date: Date
     let value: Double
